@@ -1,0 +1,14 @@
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Log files #
+*.log
+
+#folders
+/.metadata
+/.recommenders
+/RemoteSystemsTempFiles
+/.settings
+/target

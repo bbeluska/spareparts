@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14757550463960" configfile="/sparepartsWEB/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf14757560279121" outlinks="pf14757560279122 pf14757560279123 pf14757560279124 pf14757560279125" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf14757560279126" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14757560279122" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin.xhtml" id="pf14757560279127" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf14757560279123" path="/admin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="manager.xhtml" id="pf14757560279128" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf14757560279124" path="/manager.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="user.xhtml" id="pf14757560279129" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf14757560279125" path="/user.xhtml"/>
+  <links id="pf14757560279122" target="pf14757560279126" source="pf14757560279121" outcome="failed" fromaction="#{loginBean.login}"/>
+  <links id="pf14757560279123" target="pf14757560279127" source="pf14757560279121" outcome="ADIMIN" fromaction="#{loginBean.login}"/>
+  <links id="pf14757560279124" target="pf14757560279128" source="pf14757560279121" outcome="MANAGER" fromaction="#{loginBean.login}"/>
+  <links id="pf14757560279125" target="pf14757560279129" source="pf14757560279121" outcome="USER" fromaction="#{loginBean.login}"/>
+</pageflow:Pageflow>
