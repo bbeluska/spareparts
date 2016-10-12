@@ -9,10 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import utils.Constants;
+
 @ManagedBean
 @RequestScoped
 public class LogOutBean implements Serializable {
-	private String label = "Logout";
 	private static final long serialVersionUID = -4975864716415272511L;
 
 	final static Logger logger = Logger.getLogger(LogOutBean.class);
@@ -25,11 +26,6 @@ public class LogOutBean implements Serializable {
 		} catch (IllegalStateException e) {
 			logger.error("Exception in logOut: " + e);
 		}
-		return "loggedOut";
+		return Constants.LOGGEDOUT;
 	}
-
-	public String getLabel() {
-		return label;
-	}
-
 }

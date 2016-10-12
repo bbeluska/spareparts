@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import utils.Constants;
+
 @WebFilter(filterName = "UserFilter", urlPatterns = { "/user.xhtml" })
 public class UserFilter implements Filter {
 
@@ -25,10 +27,10 @@ public class UserFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse resp = (HttpServletResponse)response;
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(false);
 		
-		if (null != session && null != session.getAttribute("userType")
-				&& session.getAttribute("userType").toString().equals("USER")){
+		if (null != session && null != session.getAttribute(Constants.USERTYPE)
+				&& session.getAttribute(Constants.USERTYPE).toString().equals(Constants.USER)){
 			chain.doFilter(request, response);
 		} else {
 			resp.sendRedirect(req.getContextPath() + "/login.xhtml");

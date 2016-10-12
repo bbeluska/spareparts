@@ -8,6 +8,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import utils.Constants;
+
 @ManagedBean
 @ViewScoped
 public class UserPageBean implements Serializable {
@@ -25,9 +27,9 @@ public class UserPageBean implements Serializable {
 		session = null;
 		facesContext = FacesContext.getCurrentInstance();
 		session = (HttpSession) facesContext.getExternalContext().getSession(false);
-		if (null != session.getAttribute("userName")) {
-			userName = session.getAttribute("userName").toString();
-			userType = session.getAttribute("userType").toString();
+		if (null != session.getAttribute(Constants.USERNAME)) {
+			userName = session.getAttribute(Constants.USERNAME).toString();
+			userType = session.getAttribute(Constants.USERTYPE).toString();
 		}
 	}
 

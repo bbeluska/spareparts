@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import utils.Constants;
+
 @WebFilter(filterName = "LoginFilter", urlPatterns = { "/login.xhtml" })
 public class LoginFilter implements Filter {
 
@@ -29,19 +31,19 @@ public class LoginFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		HttpSession session = req.getSession(false);
 
-		if (null == session || null == session.getAttribute("userType")) {
+		if (null == session || null == session.getAttribute(Constants.USERTYPE)) {
 			chain.doFilter(request, response);
 		} else {
-			switch (session.getAttribute("userType").toString()) {
-			case "ADMIN": {
+			switch (session.getAttribute(Constants.USERTYPE).toString()) {
+			case Constants.ADMIN: {
 				resp.sendRedirect(req.getContextPath() + "/admin.xhtml");
 				break;
 			}
-			case "USER": {
+			case Constants.USER: {
 				resp.sendRedirect(req.getContextPath() + "/user.xhtml");
 				break;
 			}
-			case "MANAGER": {
+			case Constants.MANAGER: {
 				resp.sendRedirect(req.getContextPath() + "/manager.xhtml");
 				break;
 			}

@@ -1,6 +1,7 @@
 beans\LoginBean.class
 beans\ManagerPageBean.class
 filters\ManagerFilter.class
+utils\Constants.class
 beans\UserPageBean.class
 filters\AdminFilter.class
 filters\LoginFilter.class

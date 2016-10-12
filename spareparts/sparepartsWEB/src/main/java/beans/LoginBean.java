@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 
 import sparepartsEJBClient.dtos.UserDTO;
 import sparepartsEJBClient.interfaces.UserBeanInterface;
+import utils.Constants;
 
 @ManagedBean
 @RequestScoped
@@ -49,15 +50,15 @@ public class LoginBean implements Serializable {
 
 	// create session and return the user type
 	// user type is used in the faces-config.xml at the Navigation rules
-	private String loginSuccess() {
+	private String loginSuccess(){
 		if (!user.getType().isEmpty()) {
 			HttpSession session = getSession();
-			session.setAttribute("userType", user.getType());
-			session.setAttribute("userName", user.getUserName());
-			session.setAttribute("menuFile", user.getType().toLowerCase() + "menu.xhtml");
+			session.setAttribute(Constants.USERTYPE, user.getType());
+			session.setAttribute(Constants.USERNAME, user.getUserName());
+			session.setAttribute(Constants.MENUFILE, user.getType().toLowerCase() + "menu.xhtml");
 			return user.getType();
 		} else {
-			return "failed";
+			return Constants.FAILED;
 		}
 	}
 	
@@ -69,7 +70,7 @@ public class LoginBean implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed!", "Error"));
 		userName = "";
-		return "failed";
+		return Constants.FAILED;
 	}
 
 	public UserDTO getCurrentUser() {

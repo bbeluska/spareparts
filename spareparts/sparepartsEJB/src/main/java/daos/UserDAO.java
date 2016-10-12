@@ -44,7 +44,6 @@ public class UserDAO {
 					"SELECT u from User u WHERE u.userName = :userName AND u.password = :password", User.class);
 			query.setParameter("userName", userName);
 			query.setParameter("password", password);
-			logger.debug("LOGIN");
 			return query.getSingleResult();
 		} catch (PersistenceException e){
 			logger.error("Exception in login: " + e);

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import utils.Constants;
+
 @WebFilter(filterName = "AdminFilter", urlPatterns = { "/admin.xhtml" })
 public class AdminFilter implements Filter {
 
@@ -26,9 +28,9 @@ public class AdminFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
-		HttpSession session = req.getSession(false);
-		session.getClass();
-		if (null != session && "admin".equals(session.getAttribute("userType").toString()) ){
+		HttpSession session = req.getSession();
+		if (null != session && null != session.getAttribute(Constants.USERTYPE)
+				&& session.getAttribute(Constants.USERTYPE).toString().equals(Constants.ADMIN)) {
 			chain.doFilter(request, response);
 		} else {
 			resp.sendRedirect(req.getContextPath() + "/login.xhtml");
@@ -37,7 +39,7 @@ public class AdminFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		//Do nothing
+		// Do nothing
 	}
 
 }
