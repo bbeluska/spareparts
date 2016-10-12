@@ -11,4 +11,5 @@
 /.recommenders
 /RemoteSystemsTempFiles
 /.settings
+/spareparts/.sonar
 /target

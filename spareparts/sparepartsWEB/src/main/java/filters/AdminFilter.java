@@ -18,6 +18,7 @@ public class AdminFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		// Do nothing
 	}
 
 	@Override
@@ -27,8 +28,7 @@ public class AdminFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		HttpSession session = req.getSession(false);
 		session.getClass();
-		if (null != session && null != session.getAttribute("userType")
-				&& session.getAttribute("userType").toString().equals("ADMIN")) {
+		if (null != session && "admin".equals(session.getAttribute("userType").toString()) ){
 			chain.doFilter(request, response);
 		} else {
 			resp.sendRedirect(req.getContextPath() + "/login.xhtml");
@@ -37,6 +37,7 @@ public class AdminFilter implements Filter {
 
 	@Override
 	public void destroy() {
+		//Do nothing
 	}
 
 }

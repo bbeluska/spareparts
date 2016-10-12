@@ -33,10 +33,8 @@ public class UserBean implements Serializable, UserBeanInterface {
 			for (User user : userList) {
 				userDTOList.add(userAssembler.userToDto(user));
 			}
-			return userDTOList;
-		} else {
-			return null;
 		}
+		return userDTOList;
 	}
 
 	@Override
@@ -44,8 +42,7 @@ public class UserBean implements Serializable, UserBeanInterface {
 
 		User user = userDAO.login(userName, password);
 		if (null != user) {
-			UserDTO userDTO = userAssembler.userToDto(user);
-			return userDTO;
+			return userAssembler.userToDto(user);
 		} else {
 			return null;
 		}
