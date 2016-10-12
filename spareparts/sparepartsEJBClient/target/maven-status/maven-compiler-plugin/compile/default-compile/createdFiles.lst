@@ -1,2 +1,3 @@
 test\test.class
 sparepartsEJBClient\dtos\UserDTO.class
+sparepartsEJBClient\interfaces\UserBeanInterface.class

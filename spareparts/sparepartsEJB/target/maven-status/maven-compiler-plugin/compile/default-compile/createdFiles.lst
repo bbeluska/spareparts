@@ -1,0 +1,4 @@
+daos\UserDAO.class
+assemblers\UserAssembler.class
+beans\UserBean.class
+model\User.class

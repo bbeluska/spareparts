@@ -11,10 +11,14 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.apache.log4j.Logger;
+
 import model.User;
 
 @Stateless(name = "UserDAO", mappedName = "ejb.UserDAO")
 public class UserDAO {
+	
+	final static Logger logger = Logger.getLogger(UserDAO.class);
 	
 	@PersistenceContext(unitName = "spareparts")
 	private EntityManager entityManager;
@@ -29,7 +33,7 @@ public class UserDAO {
 			return tq.getResultList();
 			
 		} catch(PersistenceException e){
-			// TODO log this exception
+			logger.error("Exception in getAllUsers: " + e);
 			return null;
 		}
 	}
@@ -40,11 +44,11 @@ public class UserDAO {
 					"SELECT u from User u WHERE u.userName = :userName AND u.password = :password", User.class);
 			query.setParameter("userName", userName);
 			query.setParameter("password", password);
-			
+			logger.debug("LOGIN");
 			User user = query.getSingleResult();
 			return user;
 		} catch (PersistenceException e){
-			// TODO log this exception
+			logger.error("Exception in login: " + e);
 			return null;
 		}
 	}

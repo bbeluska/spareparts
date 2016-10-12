@@ -1,1 +1,9 @@
 beans\LoginBean.class
+beans\ManagerPageBean.class
+filters\ManagerFilter.class
+beans\UserPageBean.class
+filters\AdminFilter.class
+filters\LoginFilter.class
+filters\UserFilter.class
+beans\AdminPageBean.class
+beans\LogOutBean.class

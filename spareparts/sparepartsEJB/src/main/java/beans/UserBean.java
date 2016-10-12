@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
-import Exceptions.DaoException;
 import assemblers.UserAssembler;
 import daos.UserDAO;
 import model.User;
@@ -29,35 +28,27 @@ public class UserBean implements Serializable, UserBeanInterface {
 	@Override
 	public List<UserDTO> getAllUsers() {
 		List<UserDTO> userDTOList = new ArrayList<>();
-		try {
-			List<User> userList = userDAO.getAllUsers();
-			if (null != userList) {
-				for (User user : userList) {
-					userDTOList.add(userAssembler.userToDto(user));
-				}
+		List<User> userList = userDAO.getAllUsers();
+		if (null != userList) {
+			for (User user : userList) {
+				userDTOList.add(userAssembler.userToDto(user));
 			}
 			return userDTOList;
-		} catch (DaoException e) {
-			// TODO Log this exception
+		} else {
 			return null;
 		}
 	}
 
 	@Override
 	public UserDTO login(String userName, String password) {
-		try {
-			User user = userDAO.login(userName, password);
-			if (null != user) {
-				UserDTO userDTO = userAssembler.userToDto(user);
-				return userDTO;
-			} else {
-				return null;
-			}
 
-		} catch (DaoException e) {
-			// TODO Log this exception
+		User user = userDAO.login(userName, password);
+		if (null != user) {
+			UserDTO userDTO = userAssembler.userToDto(user);
+			return userDTO;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 }
