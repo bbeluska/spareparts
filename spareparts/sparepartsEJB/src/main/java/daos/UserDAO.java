@@ -1,5 +1,6 @@
 package daos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -16,6 +17,7 @@ import org.apache.log4j.Logger;
 import model.User;
 
 /**
+ * @author Balint Bela
  * This is a Data Transfer Object for User entity
  */
 @Stateless(name = "UserDAO", mappedName = "ejb.UserDAO")
@@ -27,20 +29,24 @@ public class UserDAO {
 	private EntityManager entityManager;
 
 	/**
-	 * This method returns all the records from the 'user' table;
+	 * Gets all the records from the 'user' table.
+	 * 
+	 * @return A list of 'User' type models or an empty list if no records found
 	 */
 	public List<User> getAllUsers() {
+		List<User> result = new ArrayList<>();
 		try {
 			CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 			CriteriaQuery<User> cq = cb.createQuery(User.class);
 			Root<User> root = cq.from(User.class);
 			CriteriaQuery<User> allEntities = cq.select(root);
 			TypedQuery<User> tq = entityManager.createQuery(allEntities);
-			return tq.getResultList();
+			result = tq.getResultList();
+			return result;
 
 		} catch (PersistenceException e) {
 			logger.error("Exception in getAllUsers: " + e);
-			return null;
+			return result;
 		}
 
 	}
@@ -53,8 +59,8 @@ public class UserDAO {
 	 *            The user name to be verified.
 	 * @param password
 	 *            The password for the given user.
-	 * @return User type model if the login data is correct
-	 * @return 'null' in case of invalid password or inexistent user
+	 * @return User type model if the login data is correct or 'null' in case of
+	 *         invalid password or inexistent user
 	 */
 	public User login(String userName, String password) {
 		try {

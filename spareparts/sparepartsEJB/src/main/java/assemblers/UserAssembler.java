@@ -2,7 +2,10 @@ package assemblers;
 
 import model.User;
 import sparepartsEJBClient.dtos.UserDTO;
-
+/**
+ * @author Balint Bela
+ * This class contains methods used to convert from  
+ */
 public class UserAssembler {
 
 	public UserDTO userToDto(User user){
